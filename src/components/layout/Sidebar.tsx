@@ -12,8 +12,7 @@ import {
   FileSpreadsheet,
   Settings,
   Sparkles,
-  AlertTriangle,
-  Compass,
+  Shield,
   Link2,
 } from 'lucide-react';
 import { Alert } from '../../types';
@@ -70,30 +69,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 dark:bg-[#070b14] text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800/80 select-none transition-colors duration-300 z-20">
+    <aside className="w-60 bg-white dark:bg-[#070B14] text-slate-700 dark:text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-200 dark:border-slate-800/80 select-none z-20">
       {/* Brand Header */}
-      <div className="p-4 border-b border-slate-800/80">
-        <div className="flex items-center gap-3">
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/25 ring-1 ring-white/20">
-            <Compass className="w-5 h-5 animate-[spin_12s_linear_infinite]" />
-            <div className="absolute inset-0 rounded-xl bg-blue-400/20 blur-sm pointer-events-none" />
+      <div className="h-14 px-4 flex items-center border-b border-slate-200 dark:border-slate-800/80">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded bg-blue-600/10 dark:bg-blue-600/20 border border-blue-500/30 dark:border-blue-500/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <Shield className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <h1 className="font-heading font-extrabold text-white tracking-tight text-base">CyberTrace</h1>
-              <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <span className="font-semibold text-slate-900 dark:text-white tracking-tight text-sm">CyberTrace</span>
+              <span className="text-[9px] font-mono font-medium px-1 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                 PROACTIVE
               </span>
             </div>
-            <p className="text-[10px] font-mono text-slate-400 tracking-tight">National Cyber Forensics</p>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-none">National Cyber Forensics</p>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-3 space-y-1 overflow-y-auto">
-        <div className="px-3 pb-2 text-[10px] font-mono uppercase tracking-wider text-slate-400">
-          Forensic Modules
+      <nav className="flex-1 px-2.5 py-3 space-y-0.5 overflow-y-auto">
+        <div className="px-2.5 pb-1.5 text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">
+          Modules
         </div>
         {navItems.map((item) => {
           const isActive = currentTab === item.id;
@@ -101,22 +99,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               key={item.id}
               onClick={() => onSelectTab(item.id)}
-              className={`w-full group relative flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 active:scale-98 ${
+              className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors ${
                 isActive
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30 font-semibold'
-                  : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'
+                  ? 'bg-blue-50 text-blue-700 border-blue-200 font-semibold dark:bg-blue-600/15 dark:text-blue-400 dark:border-blue-500/30'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200 border border-transparent'
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <span className={`transition-colors ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-400'}`}>
+                <span className={isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-500'}>
                   {item.icon}
                 </span>
                 <span>{item.label}</span>
               </div>
               {item.badge !== undefined && (
                 <span
-                  className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full ${
-                    isActive ? 'bg-white text-blue-700' : 'bg-rose-500 text-white'
+                  className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded ${
+                    isActive ? 'bg-blue-600 text-white' : 'bg-rose-50 text-rose-600 border border-rose-200 dark:bg-rose-500/20 dark:text-rose-400 dark:border-rose-500/30'
                   }`}
                 >
                   {item.badge}
@@ -128,27 +126,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       {/* AI Copilot Quick Callout */}
-      <div className="p-3 border-t border-slate-800/80">
+      <div className="p-2.5 border-t border-slate-200 dark:border-slate-800/80">
         <button
           onClick={onOpenAi}
-          className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-r from-blue-600/10 via-indigo-600/15 to-purple-600/10 border border-blue-500/30 p-3 text-left hover:border-blue-400 transition-all duration-300 shadow-xs"
+          className="w-full rounded-md bg-slate-50 hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-850 border border-slate-200 dark:border-slate-800 p-2.5 text-left transition-colors"
         >
-          <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs mb-1">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
-            <span>AI Forensic Copilot</span>
+          <div className="flex items-center gap-1.5 text-slate-800 dark:text-slate-200 font-medium text-xs mb-1">
+            <Sparkles className="w-3.5 h-3.5 text-blue-500 dark:text-blue-400" />
+            <span>Forensic Copilot</span>
           </div>
-          <p className="text-[11px] text-slate-400 group-hover:text-slate-200 transition-colors">
-            Ask Gemini questions regarding money trails, freeze priorities, or suspect mules.
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
+            Query money trails, freeze priorities, and suspect mule indicators.
           </p>
         </button>
       </div>
 
       {/* Synthetic Dataset Notice */}
-      <div className="p-2.5 bg-slate-950/80 border-t border-slate-800/80 text-[10px] font-mono text-slate-400 flex items-center gap-2">
-        <AlertTriangle className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-        <span>Demonstration Pilot • Synthetic Sandbox</span>
+      <div className="px-3 py-2 bg-slate-50 dark:bg-[#05080F] border-t border-slate-200 dark:border-slate-800/80 text-[10px] font-mono text-slate-400 dark:text-slate-500 flex items-center justify-between">
+        <span>Pilot v1.4</span>
+        <span>•</span>
+        <span>Sandbox Environment</span>
       </div>
     </aside>
   );
 };
-

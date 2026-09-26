@@ -97,47 +97,47 @@ export const TransactionsPage: React.FC<TransactionsPageProps> = ({
       </div>
 
       {/* Forensic Detection Summary Card */}
-      <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 rounded-2xl p-5 text-white border border-slate-700 shadow-xl space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-700/80 pb-3">
-          <div className="flex items-center gap-2 text-amber-400 font-bold text-xs">
-            <ShieldAlert className="w-4 h-4 text-amber-400" />
-            <span>Forensic Rule Engine Findings (Automated Heuristics)</span>
+      <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-800 shadow-2xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+          <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs">
+            <ShieldAlert className="w-4 h-4 text-amber-500" />
+            <span>Forensic Heuristic Rules Engine</span>
           </div>
-          <div className="text-xs text-slate-300 font-mono">
-            Total Flow: <strong className="text-white">₹{totalVolume.toLocaleString('en-IN')}</strong> • Flagged Hops: <strong className="text-amber-400">{flaggedCount}</strong>
+          <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+            Total Flow: <strong className="text-slate-900 dark:text-slate-100">₹{totalVolume.toLocaleString('en-IN')}</strong> • Flagged Hops: <strong className="text-amber-600 dark:text-amber-400">{flaggedCount}</strong>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-            <div className="text-slate-400 font-medium text-[11px] flex items-center gap-1.5 font-mono">
-              <Clock className="w-3.5 h-3.5 text-blue-400" />
+          <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
+            <div className="text-slate-500 dark:text-slate-400 font-medium text-[11px] flex items-center gap-1.5 font-mono">
+              <Clock className="w-3.5 h-3.5 text-blue-500" />
               <span>Layering Velocity</span>
             </div>
-            <div className="font-bold text-white mt-1 text-sm">Ultra-Rapid (&lt; 4 mins)</div>
-            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+            <div className="font-bold text-slate-900 dark:text-slate-100 mt-1 text-sm">Ultra-Rapid (&lt; 4 mins)</div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
               Funds moved from Layer 1 to Layer 2 in 205 seconds, bypassing standard cooling thresholds.
             </p>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-            <div className="text-slate-400 font-medium text-[11px] flex items-center gap-1.5 font-mono">
-              <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
+          <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
+            <div className="text-slate-500 dark:text-slate-400 font-medium text-[11px] flex items-center gap-1.5 font-mono">
+              <TrendingUp className="w-3.5 h-3.5 text-purple-500" />
               <span>Fractional Smurfing</span>
             </div>
-            <div className="font-bold text-white mt-1 text-sm">2-Way Split Topology</div>
-            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+            <div className="font-bold text-slate-900 dark:text-slate-100 mt-1 text-sm">2-Way Split Topology</div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
               ₹50,000 partitioned into ₹28,000 and ₹21,500 across two independent bank entities (HDFC &amp; ICICI).
             </p>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-            <div className="text-slate-400 font-medium text-[11px] flex items-center gap-1.5 font-mono">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+          <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
+            <div className="text-slate-500 dark:text-slate-400 font-medium text-[11px] flex items-center gap-1.5 font-mono">
+              <AlertTriangle className="w-3.5 h-3.5 text-rose-500" />
               <span>Liquidation Staging</span>
             </div>
-            <div className="font-bold text-white mt-1 text-sm">High ATM Exit Risk</div>
-            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+            <div className="font-bold text-slate-900 dark:text-slate-100 mt-1 text-sm">High ATM Exit Risk</div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
               Both streams reconsolidated into Apex Cash Hub (ACC-CASH-7721), historically liquidated via South BLR ATMs.
             </p>
           </div>

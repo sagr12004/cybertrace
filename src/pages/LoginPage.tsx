@@ -47,21 +47,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4 relative overflow-hidden">
-      {/* Background Subtle Gradient Glows */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6 relative z-10">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4">
+      <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-xl p-8 shadow-xl space-y-6">
         {/* Brand Header */}
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-500 mx-auto flex items-center justify-center text-white shadow-xl shadow-blue-600/20">
-            <Target className="w-8 h-8" />
+          <div className="w-12 h-12 rounded-lg bg-blue-600 mx-auto flex items-center justify-center text-white shadow-xs">
+            <Target className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center justify-center gap-2">
-              <h1 className="text-2xl font-heading font-black text-white tracking-tight">CyberTrace</h1>
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-400/30">
+              <h1 className="text-xl font-heading font-black text-white tracking-tight">CyberTrace</h1>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-400/30">
                 PORTAL
               </span>
             </div>

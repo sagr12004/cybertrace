@@ -171,7 +171,7 @@ export const NavigationBreadcrumb: React.FC<NavigationBreadcrumbProps> = ({
 
       {/* Expandable Module Explainer Card */}
       {showInfo && (
-        <div className="max-w-7xl mx-auto mt-3 p-4 bg-gradient-to-r from-indigo-50/90 via-blue-50/90 to-slate-50/90 dark:from-slate-900 dark:via-indigo-950/40 dark:to-slate-900 rounded-xl border border-indigo-200 dark:border-indigo-800/80 shadow-md animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="max-w-7xl mx-auto mt-2.5 p-3.5 bg-slate-50 dark:bg-slate-900/90 rounded-lg border border-slate-200 dark:border-slate-800 text-xs">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2">

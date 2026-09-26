@@ -197,22 +197,25 @@ export const GisMapPage: React.FC<GisMapPageProps> = ({
           html: `
             <div style="
               background-color: #10B981;
-              width: 26px;
-              height: 26px;
-              border-radius: 8px;
-              border: 2px solid white;
-              box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+              width: 24px;
+              height: 24px;
+              border-radius: 6px;
+              border: 1.5px solid white;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.5);
               display: flex;
               align-items: center;
               justify-content: center;
               color: white;
-              font-size: 12px;
             ">
-              🚓
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/>
+                <circle cx="17" cy="17" r="2"/>
+              </svg>
             </div>
           `,
-          iconSize: [26, 26],
-          iconAnchor: [13, 13],
+          iconSize: [24, 24],
+          iconAnchor: [12, 12],
         });
 
         const patrolMarker = L.marker([unit.lat, unit.lng], { icon: patrolIcon }).addTo(layerGroup);
@@ -240,17 +243,17 @@ export const GisMapPage: React.FC<GisMapPageProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => onNavigateTab('overview')}
-              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+              className="p-1 rounded-md bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors"
               title="Back to Overview"
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
-            <h2 className="text-xl font-heading font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              <span>GIS Geospatial Risk &amp; Withdrawal Hotspot Heatmap</span>
-            </h2>
-            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-              Live Tactical Map
+            <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-emerald-500" />
+              <span>GIS Geospatial Risk &amp; Hotspot Map</span>
+            </h1>
+            <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              Tactical Map
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -261,32 +264,32 @@ export const GisMapPage: React.FC<GisMapPageProps> = ({
         {/* Drill-down Filters requested by SIH Brief */}
         <div className="flex items-center gap-2 flex-wrap">
           {/* Time Window Drill-down */}
-          <div className="flex items-center gap-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 rounded-md px-2 py-1 text-xs">
             <Clock className="w-3.5 h-3.5 text-slate-400" />
             <select
               value={timeFilter}
               onChange={(e) => setTimeFilter(e.target.value as any)}
-              className="text-xs bg-transparent text-slate-700 dark:text-slate-200 font-medium focus:outline-none"
+              className="bg-transparent text-slate-700 dark:text-slate-200 font-medium focus:outline-none cursor-pointer"
             >
-              <option value="ALL">All Time Windows</option>
-              <option value="0-6 hours">0-6 hrs (Critical)</option>
-              <option value="6-12 hours">6-12 hrs</option>
-              <option value="12-24 hours">12-24 hrs</option>
-              <option value="Over 24 hours">&gt;24 hrs</option>
+              <option value="ALL" className="dark:bg-slate-900">All Windows</option>
+              <option value="0-6 hours" className="dark:bg-slate-900">0-6 hrs (Critical)</option>
+              <option value="6-12 hours" className="dark:bg-slate-900">6-12 hrs</option>
+              <option value="12-24 hours" className="dark:bg-slate-900">12-24 hrs</option>
+              <option value="Over 24 hours" className="dark:bg-slate-900">&gt;24 hrs</option>
             </select>
           </div>
 
           {/* Location / Jurisdiction Drill-down */}
-          <div className="flex items-center gap-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 rounded-md px-2 py-1 text-xs">
             <MapPin className="w-3.5 h-3.5 text-slate-400" />
             <select
               value={locationFilter}
               onChange={(e) => setLocationFilter(e.target.value)}
-              className="text-xs bg-transparent text-slate-700 dark:text-slate-200 font-medium focus:outline-none"
+              className="bg-transparent text-slate-700 dark:text-slate-200 font-medium focus:outline-none cursor-pointer"
             >
-              <option value="ALL">All Subdivisions</option>
+              <option value="ALL" className="dark:bg-slate-900">All Subdivisions</option>
               {availableAreas.map((area) => (
-                <option key={area} value={area}>
+                <option key={area} value={area} className="dark:bg-slate-900">
                   {area}
                 </option>
               ))}
@@ -297,23 +300,23 @@ export const GisMapPage: React.FC<GisMapPageProps> = ({
           <select
             value={riskFilter}
             onChange={(e) => setRiskFilter(e.target.value as any)}
-            className="text-xs border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium"
+            className="text-xs border border-slate-200 dark:border-slate-800 rounded-md px-2.5 py-1 bg-white dark:bg-[#0F172A] text-slate-700 dark:text-slate-200 font-medium focus:outline-none cursor-pointer"
           >
-            <option value="ALL">All Risk Levels</option>
-            <option value="High">High Risk (&gt;75%)</option>
-            <option value="Medium">Medium Risk (45-75%)</option>
+            <option value="ALL" className="dark:bg-slate-900">All Risk Levels</option>
+            <option value="High" className="dark:bg-slate-900">High Risk (&gt;75%)</option>
+            <option value="Medium" className="dark:bg-slate-900">Medium Risk (45-75%)</option>
           </select>
 
           {/* Layer Toggles */}
           <button
             onClick={() => setShowHeatCircles(!showHeatCircles)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+            className={`px-2.5 py-1 rounded-md text-xs font-medium border transition-colors ${
               showHeatCircles
-                ? 'bg-rose-500/10 text-rose-700 dark:text-rose-400 border-rose-500/30'
-                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700'
+                ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/30'
+                : 'bg-white dark:bg-[#0F172A] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'
             }`}
           >
-            {showHeatCircles ? 'Hotspot Radii: ON' : 'Hotspot Radii: OFF'}
+            {showHeatCircles ? 'Hotspots: ON' : 'Hotspots: OFF'}
           </button>
 
           <button

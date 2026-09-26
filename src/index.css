@@ -25,23 +25,18 @@
   }
 
   body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     letter-spacing: -0.011em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .font-heading {
-    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: -0.025em;
-  }
-
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Custom refined scrollbar (Lenis / Animate UI aesthetic) */
+  /* Refined, high-precision scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -53,11 +48,11 @@
 
   ::-webkit-scrollbar-thumb {
     background: #CBD5E1;
-    border-radius: 9999px;
+    border-radius: 4px;
   }
 
   .dark ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #26354A;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -65,61 +60,77 @@
   }
 
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #3B82F6;
+  }
+
+  /* Browser selection styling */
+  ::selection {
+    background: rgba(59, 130, 246, 0.25);
+    color: #F8FAFC;
   }
 }
 
 /* Tactical Dark-Mode styling for Leaflet OpenStreetMap */
 .dark .leaflet-tile-pane {
-  filter: invert(100%) hue-rotate(185deg) brightness(88%) contrast(92%) saturate(45%);
+  filter: invert(100%) hue-rotate(185deg) brightness(85%) contrast(95%) saturate(30%);
 }
 
 .dark .leaflet-container {
   background: #090D16 !important;
 }
 
-/* Inspira UI & Tactical Glass Accents */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* ReactFlow Dark Theme Overrides */
+.dark .react-flow__background {
+  background-color: #070B14 !important;
 }
 
-.dark .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(30, 41, 59, 0.8);
+.dark .react-flow__controls {
+  background: #0F172A !important;
+  border: 1px solid #1E293B !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 8px !important;
 }
 
-/* Subtle Inspira UI Card Border Glow */
-.inspira-card {
-  position: relative;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+.dark .react-flow__controls-button {
+  background: #0F172A !important;
+  border-bottom: 1px solid #1E293B !important;
+  color: #94A3B8 !important;
+  fill: #94A3B8 !important;
 }
 
-.inspira-card:hover {
-  transform: translateY(-1px);
+.dark .react-flow__controls-button:hover {
+  background: #1E293B !important;
+  color: #F8FAFC !important;
+  fill: #F8FAFC !important;
 }
 
-/* Micro-interaction active feedback */
+.dark .react-flow__minimap {
+  background-color: #0F172A !important;
+  border: 1px solid #1E293B !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.dark .react-flow__minimap-mask {
+  fill: rgba(7, 11, 20, 0.8) !important;
+}
+
+/* Clean operational panel styles */
+.ops-panel {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+}
+
+.dark .ops-panel {
+  background: #0F172A;
+  border: 1px solid #1E293B;
+}
+
+/* Subtle micro-interaction */
 .interactive-tap {
-  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.12s ease;
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
 }
 
 .interactive-tap:active {
-  transform: scale(0.985);
-}
-
-/* Grid overlay pattern */
-.bg-grid-pattern {
-  background-size: 24px 24px;
-  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-}
-
-.dark .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(51, 65, 85, 0.25) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(51, 65, 85, 0.25) 1px, transparent 1px);
+  transform: scale(0.99);
 }

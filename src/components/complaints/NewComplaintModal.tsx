@@ -62,19 +62,19 @@ export const NewComplaintModal: React.FC<NewComplaintModalProps> = ({
     <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-xl w-full border border-slate-200 dark:border-slate-800 overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-slate-900 dark:text-slate-100">
         {/* Header */}
-        <div className="px-6 py-4 bg-slate-900 dark:bg-[#070b14] text-white flex items-center justify-between border-b border-slate-800">
+        <div className="px-6 py-4 bg-white dark:bg-[#070b14] text-slate-900 dark:text-white flex items-center justify-between border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
               <ShieldAlert className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-base">Register Cybercrime Complaint</h3>
-              <p className="text-xs text-slate-400">National Cybercrime Reporting Intake (SIH Prototype)</p>
+              <h3 className="font-bold text-base text-slate-900 dark:text-white">Register Cybercrime Complaint</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">National Cybercrime Reporting Intake (SIH Prototype)</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
           >
             <X className="w-5 h-5" />
           </button>

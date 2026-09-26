@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
   ReactFlow,
-  MiniMap,
   Controls,
   Background,
   useNodesState,
@@ -9,6 +8,8 @@ import {
   Node,
   Edge,
   MarkerType,
+  Handle,
+  Position,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import {
@@ -47,29 +48,30 @@ const CustomAccountNode = ({ data }: any) => {
   let roleTitle = 'Account';
 
   if (isVictim) {
-    borderColor = 'border-blue-500 shadow-blue-500/20';
-    badgeColor = 'bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800';
-    roleTitle = 'Victim Account';
+    borderColor = 'border-blue-500/80';
+    badgeColor = 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20';
+    roleTitle = 'Victim Origin';
   } else if (isMule) {
-    borderColor = 'border-amber-500 shadow-amber-500/20';
-    badgeColor = 'bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800';
-    roleTitle = 'Mule Node';
+    borderColor = 'border-amber-500/80';
+    badgeColor = 'bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-500/20';
+    roleTitle = 'Mule Intermediate';
   } else if (isBeneficiary) {
-    borderColor = 'border-rose-500 shadow-rose-500/20';
-    badgeColor = 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800';
+    borderColor = 'border-rose-500/80';
+    badgeColor = 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20';
     roleTitle = 'Liquidation Hub';
   } else if (isAtm) {
-    borderColor = 'border-emerald-500 shadow-emerald-500/20';
-    badgeColor = 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
-    roleTitle = 'Target ATM Exit';
+    borderColor = 'border-emerald-500/80';
+    badgeColor = 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20';
+    roleTitle = 'Target ATM Endpoint';
   }
 
   return (
     <div
-      className={`px-3 py-2.5 rounded-xl bg-white dark:bg-slate-900 border-2 shadow-lg min-w-[190px] transition-all cursor-pointer ${borderColor}`}
+      className={`relative px-3 py-2 rounded-lg bg-white dark:bg-[#0F172A] border shadow-md min-w-[185px] transition-colors cursor-pointer ${borderColor}`}
     >
+      <Handle type="target" position={Position.Left} className="!w-2 !h-2 !bg-slate-400 dark:!bg-slate-600 !border-none" />
       <div className="flex items-center justify-between mb-1">
-        <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border uppercase tracking-wider ${badgeColor}`}>
+        <span className={`text-[9px] font-mono font-semibold px-1.5 py-0.2 rounded border uppercase tracking-wider ${badgeColor}`}>
           {roleTitle}
         </span>
         <span className="text-[10px] font-mono text-slate-400">
@@ -77,7 +79,7 @@ const CustomAccountNode = ({ data }: any) => {
         </span>
       </div>
 
-      <div className="font-bold text-xs text-slate-900 dark:text-slate-100 truncate">
+      <div className="font-semibold text-xs text-slate-900 dark:text-slate-100 truncate">
         {data.label}
       </div>
 
@@ -87,10 +89,11 @@ const CustomAccountNode = ({ data }: any) => {
 
       <div className="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px]">
         <span className="text-slate-500 dark:text-slate-400">{data.bankName}</span>
-        <span className="font-mono font-bold text-slate-800 dark:text-slate-200">
+        <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
           {data.totalVolume ? `₹${(data.totalVolume / 1000).toFixed(0)}k` : 'ATM'}
         </span>
       </div>
+      <Handle type="source" position={Position.Right} className="!w-2 !h-2 !bg-slate-400 dark:!bg-slate-600 !border-none" />
     </div>
   );
 };
@@ -287,6 +290,10 @@ export const NetworkGraphPage: React.FC<NetworkGraphPageProps> = ({
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+  React.useEffect(() => {
+    setEdges(initialEdges);
+  }, [initialEdges, setEdges]);
+
   const nodeTypes = useMemo(() => ({ custom: CustomAccountNode }), []);
 
   const onNodeClick = (_: any, node: Node) => {
@@ -323,36 +330,36 @@ export const NetworkGraphPage: React.FC<NetworkGraphPageProps> = ({
         </div>
       </div>
 
-      {/* Network Metrics Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 flex-shrink-0">
-        <div className="bg-white dark:bg-slate-900/90 p-3 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xs">
-          <div className="text-[10px] text-slate-400 font-mono uppercase">Connected Accounts</div>
-          <div className="text-lg font-black text-slate-900 dark:text-slate-100 mt-0.5">5 Nodes + ATM</div>
+      {/* Network Metrics Ribbon */}
+      <div className="bg-white dark:bg-[#0B1120] rounded-xl border border-slate-200 dark:border-slate-800/80 p-1 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 dark:divide-slate-800/80 grid grid-cols-2 sm:grid-cols-5 flex-shrink-0 text-xs">
+        <div className="p-2.5">
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono uppercase">Network Nodes</div>
+          <div className="text-base font-bold text-slate-900 dark:text-slate-100 mt-0.5">5 Accounts + ATM</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900/90 p-3 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xs">
-          <div className="text-[10px] text-slate-400 font-mono uppercase">Total Hops</div>
-          <div className="text-lg font-black text-blue-600 dark:text-blue-400 mt-0.5">4 Hops (3 Layers)</div>
+        <div className="p-2.5">
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono uppercase">Graph Depth</div>
+          <div className="text-base font-bold font-mono text-blue-600 dark:text-blue-400 mt-0.5">4 Hops (3 Layers)</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900/90 p-3 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xs">
-          <div className="text-[10px] text-slate-400 font-mono uppercase">Total Stolen Flow</div>
-          <div className="text-lg font-black font-mono text-slate-900 dark:text-slate-100 mt-0.5">₹50,000</div>
+        <div className="p-2.5">
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono uppercase">Stolen Volume</div>
+          <div className="text-base font-bold font-mono text-slate-900 dark:text-slate-100 mt-0.5">₹50,000</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900/90 p-3 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xs">
-          <div className="text-[10px] text-slate-400 font-mono uppercase">Centrality Anchor</div>
-          <div className="text-xs font-bold text-amber-600 dark:text-amber-400 mt-1 truncate">Dinesh Kumar (75%)</div>
+        <div className="p-2.5">
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono uppercase">Syndicate Anchor</div>
+          <div className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1 truncate">Dinesh Kumar (75%)</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900/90 p-3 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xs">
-          <div className="text-[10px] text-slate-400 font-mono uppercase">Topology Modus</div>
-          <div className="text-xs font-bold text-purple-600 dark:text-purple-400 mt-1 truncate">Fan-out then Fan-in</div>
+        <div className="p-2.5">
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono uppercase">Topology Pattern</div>
+          <div className="text-xs font-semibold text-purple-600 dark:text-purple-400 mt-1 truncate">Fan-out Fan-in</div>
         </div>
       </div>
 
       {/* Main Graph Area */}
-      <div className="flex-1 bg-white dark:bg-[#070b14] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xs overflow-hidden relative min-h-[420px]">
+      <div className="flex-1 bg-slate-50 dark:bg-[#070B14] rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-xs overflow-hidden relative min-h-[420px]">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -363,22 +370,13 @@ export const NetworkGraphPage: React.FC<NetworkGraphPageProps> = ({
           fitView
           fitViewOptions={{ padding: 0.2 }}
         >
-          <Background color={isDark ? '#1e293b' : '#CBD5E1'} gap={18} size={1} />
-          <Controls className="dark:bg-slate-900 dark:border-slate-700 dark:text-slate-300" />
-          <MiniMap
-            nodeColor={(n: any) => {
-              if (n.data?.isVictim) return '#3B82F6';
-              if (n.data?.isMule) return '#F59E0B';
-              if (n.data?.isBeneficiary) return '#EF4444';
-              return '#10B981';
-            }}
-            className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
-          />
+          <Background color={isDark ? '#1E293B' : '#CBD5E1'} gap={20} size={1} />
+          <Controls className="bg-white border-slate-200 text-slate-700 dark:bg-[#0F172A] dark:border-slate-800 dark:text-slate-300 shadow-sm" />
         </ReactFlow>
 
         {/* Selected Node Details Drawer */}
         {selectedNode && (
-          <div className="absolute top-4 right-4 w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl p-4 space-y-3 z-10 animate-in fade-in slide-in-from-right-4 text-slate-900 dark:text-slate-100">
+          <div className="absolute top-4 right-4 w-72 bg-white dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl p-4 space-y-3 z-10 text-slate-900 dark:text-slate-100 text-xs">
             <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
                 Node Forensics
