@@ -15,6 +15,7 @@ import {
   Save,
   Check,
   Eye,
+  ArrowLeft,
 } from 'lucide-react';
 import { Complaint, TimeWindow, WithdrawalPrediction } from '../types';
 
@@ -80,18 +81,25 @@ export const PredictionPage: React.FC<PredictionPageProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
-            <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+            <button
+              onClick={() => onNavigateTab('overview')}
+              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+              title="Back to Overview"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <h2 className="text-xl font-heading font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
               <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>Predictive Analytics Engine (SIH Deliverable A)</span>
+              <span>Predictive Analytics &amp; Withdrawal Forecasting Engine</span>
             </h2>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
               {activeComplaint.complaintNumber}
             </span>
             <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-              Pattern Detection &amp; Geospatial Risk Modeling
+              Pattern Detection &amp; Geospatial Modeling
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Geospatial &amp; temporal ATM cashout estimation analyzing historical cybercrime (~8k complaints daily) &amp; layering velocity
           </p>
         </div>

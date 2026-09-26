@@ -14,6 +14,7 @@ import {
   ArrowRight,
   UserCheck,
   Check,
+  ArrowLeft,
 } from 'lucide-react';
 import { Complaint, Investigation, WithdrawalPrediction, AuditLog } from '../types';
 
@@ -71,15 +72,22 @@ export const InvestigationsPage: React.FC<InvestigationsPageProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
-            <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+            <button
+              onClick={() => onNavigateTab('overview')}
+              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+              title="Back to Overview"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <h2 className="text-xl font-heading font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>Law Enforcement Interface &amp; Dossier (SIH Deliverable C)</span>
+              <span>Law Enforcement Interface &amp; Case Dossier</span>
             </h2>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
               {activeComplaint.complaintNumber}
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Secure interface for investigators: Section 91 &amp; 102 CrPC legal documentation, field interception authorization, and forensic audit trail
           </p>
         </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Sidebar, NavTab } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
+import { NavigationBreadcrumb } from './components/layout/NavigationBreadcrumb';
 import { AiCopilotDrawer } from './components/ai/AiCopilotDrawer';
 import { NewComplaintModal } from './components/complaints/NewComplaintModal';
 
@@ -319,7 +320,14 @@ export default function App() {
           onOpenAi={() => setIsAiOpen(true)}
           onOpenAlerts={() => setCurrentTab('alerts')}
           currentUser={currentUser}
+          onLogout={() => setCurrentUser(null)}
           alerts={alerts}
+        />
+
+        {/* Universal Back Navigation & Module Explainer Bar */}
+        <NavigationBreadcrumb
+          currentTab={currentTab}
+          onNavigateTab={setCurrentTab}
         />
 
         {/* Tab Pages */}

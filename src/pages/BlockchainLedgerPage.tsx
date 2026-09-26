@@ -17,6 +17,7 @@ import {
   Copy,
   Check,
   Radio,
+  ArrowLeft,
 } from 'lucide-react';
 import { Complaint, WithdrawalPrediction } from '../types';
 
@@ -164,19 +165,26 @@ export const BlockchainLedgerPage: React.FC<BlockchainLedgerPageProps> = ({
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
-      {/* Top Banner: SIH Theme Alignment */}
+      {/* Top Banner */}
       <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl border border-indigo-500/30">
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <button
+                onClick={() => onNavigateTab('overview')}
+                className="p-1 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors mr-1"
+                title="Back to Overview"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
               <span className="px-2.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono font-bold text-xs uppercase tracking-wider border border-indigo-400/30 flex items-center gap-1.5">
                 <Link2 className="w-3.5 h-3.5 text-indigo-400" />
-                SIH THEME: BLOCKCHAIN &amp; CYBERSECURITY
+                BHARAT-CHAIN CONSORTIUM FORENSICS
               </span>
               <span className="text-xs text-slate-300 font-mono">• Immutable Forensics Ledger</span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black tracking-tight text-white flex items-center gap-2">
+            <h2 className="text-xl md:text-2xl font-heading font-black tracking-tight text-white flex items-center gap-2">
               <span>Bharat-Chain Forensics &amp; Legal Chain of Custody</span>
             </h2>
             <p className="text-xs text-slate-300 mt-1.5 max-w-2xl leading-relaxed">

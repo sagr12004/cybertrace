@@ -19,6 +19,7 @@ import {
   Layers2,
   Tag,
   Crosshair,
+  ArrowLeft,
 } from 'lucide-react';
 import { AtmLocation, Complaint, CrimeCategory, TimeWindow, WithdrawalPrediction } from '../types';
 
@@ -95,7 +96,7 @@ export const GisMapPage: React.FC<GisMapPageProps> = ({
       const tileLayer = L.tileLayer(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         {
-          attribution: '&copy; OpenStreetMap contributors | CyberTrace SIH 2026',
+          attribution: '&copy; OpenStreetMap contributors | CyberTrace',
           maxZoom: 18,
         }
       );
@@ -233,19 +234,26 @@ export const GisMapPage: React.FC<GisMapPageProps> = ({
 
   return (
     <div className="p-6 space-y-4 max-w-7xl mx-auto h-[calc(100vh-4rem)] flex flex-col">
-      {/* Header with SIH Deliverable B Callout */}
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 flex-shrink-0">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+            <button
+              onClick={() => onNavigateTab('overview')}
+              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+              title="Back to Overview"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <h2 className="text-xl font-heading font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
               <MapPin className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              <span>GIS Risk Heatmap Dashboard (SIH Deliverable B)</span>
+              <span>GIS Geospatial Risk &amp; Withdrawal Hotspot Heatmap</span>
             </h2>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-              Live GIS Tactical
+              Live Tactical Map
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Real-time and potential withdrawal risk zones with drill-downs by time window, jurisdiction, and crime vector
           </p>
         </div>

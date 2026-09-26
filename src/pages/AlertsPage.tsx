@@ -22,6 +22,7 @@ import {
   X,
   FileCheck,
   Check,
+  ArrowLeft,
 } from 'lucide-react';
 import { Alert, AlertStatus, Complaint } from '../types';
 
@@ -102,20 +103,27 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
-      {/* Top Banner: SIH Deliverable Alignment */}
+      {/* Top Banner */}
       <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-r from-slate-900 via-rose-950 to-slate-900 text-white shadow-xl border border-rose-500/30">
         <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <button
+                onClick={() => onNavigateTab('overview')}
+                className="p-1 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors mr-1"
+                title="Back to Overview"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
               <span className="px-2.5 py-0.5 rounded bg-rose-500/20 text-rose-300 font-mono font-bold text-xs uppercase tracking-wider border border-rose-400/30 flex items-center gap-1.5">
                 <Bell className="w-3.5 h-3.5 text-rose-400" />
-                SIH DELIVERABLE D: ALERT &amp; NOTIFICATION SYSTEM
+                AUTOMATED THREAT BROADCAST &amp; INTERCEPTION
               </span>
-              <span className="text-xs text-slate-300 font-mono">• Multi-Agency Real-Time Broadcast</span>
+              <span className="text-xs text-slate-300 font-mono">• Multi-Agency Real-Time Pipeline</span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black tracking-tight text-white flex items-center gap-2">
-              <span>Automated Threat Broadcast to LEAs, Banks &amp; I4C</span>
+            <h2 className="text-xl md:text-2xl font-heading font-black tracking-tight text-white flex items-center gap-2">
+              <span>Real-Time Threat Broadcast to Police Patrols &amp; Bank Desks</span>
             </h2>
             <p className="text-xs text-slate-300 mt-1.5 max-w-2xl leading-relaxed">
               Instant notification pipeline delivering actionable intelligence across SMS, Secure Gov Mail, CFCFRMS Banking Webhooks,
@@ -323,8 +331,8 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({
             <div className="p-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <Send className="w-4 h-4 text-rose-400" />
-                <h3 className="font-extrabold text-sm text-white">
-                  Multi-Channel Alert Dispatcher (SIH Deliverable D)
+                <h3 className="font-heading font-extrabold text-sm text-white">
+                  Multi-Channel Alert Dispatcher &amp; Emergency Broadcast
                 </h3>
               </div>
               <button

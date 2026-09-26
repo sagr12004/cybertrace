@@ -109,7 +109,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
-      {/* Top Banner: SIH 2026 Problem Statement Callout */}
+      {/* Top Banner: National Cyber Command Callout */}
       <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white shadow-xl border border-blue-500/30">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -117,14 +117,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono font-bold text-xs uppercase tracking-wider border border-blue-400/30 flex items-center gap-1.5">
                 <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
-                SIH 2026: BLOCKCHAIN &amp; CYBERSECURITY
+                NATIONAL CYBER FORENSICS &amp; FINANCIAL DEFENSE
               </span>
-              <span className="text-xs text-slate-300 font-mono">• National Cybercrime Reporting Portal (NCRP / I4C)</span>
+              <span className="text-xs text-slate-300 font-mono">• National Cybercrime Reporting Portal (NCRP)</span>
               <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] border border-emerald-400/30">
                 ~8,000 Complaints/Day Proactive Defense
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">
+            <h2 className="text-xl md:text-2xl font-heading font-black tracking-tight text-white">
               CyberTrace: Predictive Analytics &amp; Cash Withdrawal Forecasting
             </h2>
             <p className="text-xs text-slate-300 mt-1.5 max-w-3xl leading-relaxed">
@@ -139,7 +139,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               className="flex items-center gap-1.5 px-3.5 py-2.5 bg-indigo-600/40 hover:bg-indigo-600/70 text-indigo-200 border border-indigo-400/30 rounded-xl text-xs font-semibold backdrop-blur-xs transition-all active:scale-98"
             >
               <Info className="w-4 h-4" />
-              <span>SIH PS Specs</span>
+              <span>System Guide</span>
             </button>
             <button
               onClick={onLoadDemoScenario}
@@ -159,19 +159,19 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         </div>
       </div>
 
-      {/* SIH Key Deliverables Bento Matrix (4 Pillars + Blockchain) */}
+      {/* Core Capabilities Bento Matrix */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-        {/* Deliverable a */}
+        {/* Capability 1 */}
         <div
           onClick={() => onNavigateTab('prediction')}
           className="bg-white dark:bg-slate-900/90 rounded-xl p-4 border border-blue-200 dark:border-blue-900/40 shadow-2xs hover:border-blue-500 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center justify-between text-xs text-blue-600 dark:text-blue-400 font-bold mb-1">
-              <span className="font-mono text-[10px] uppercase tracking-wider">Deliverable A</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">AI Predictive Engine</span>
               <Target className="w-4 h-4 transition-transform group-hover:scale-110" />
             </div>
-            <h4 className="font-black text-sm text-slate-900 dark:text-slate-100">Predictive Engine</h4>
+            <h4 className="font-heading font-black text-sm text-slate-900 dark:text-slate-100">Predictive Engine</h4>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
               ML pattern detection &amp; geospatial risk modeling on 8,000+ daily complaints.
             </p>
@@ -182,17 +182,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        {/* Deliverable b */}
+        {/* Capability 2 */}
         <div
           onClick={() => onNavigateTab('map')}
           className="bg-white dark:bg-slate-900/90 rounded-xl p-4 border border-emerald-200 dark:border-emerald-900/40 shadow-2xs hover:border-emerald-500 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center justify-between text-xs text-emerald-600 dark:text-emerald-400 font-bold mb-1">
-              <span className="font-mono text-[10px] uppercase tracking-wider">Deliverable B</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">Tactical GIS Heatmap</span>
               <MapPin className="w-4 h-4 transition-transform group-hover:scale-110" />
             </div>
-            <h4 className="font-black text-sm text-slate-900 dark:text-slate-100">Risk Heatmap GIS</h4>
+            <h4 className="font-heading font-black text-sm text-slate-900 dark:text-slate-100">Risk Heatmap GIS</h4>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
               GIS visualization of real-time &amp; potential risk zones with time/crime drill-downs.
             </p>
@@ -203,17 +203,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        {/* Deliverable c */}
+        {/* Capability 3 */}
         <div
           onClick={() => onNavigateTab('investigations')}
           className="bg-white dark:bg-slate-900/90 rounded-xl p-4 border border-purple-200 dark:border-purple-900/40 shadow-2xs hover:border-purple-500 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center justify-between text-xs text-purple-600 dark:text-purple-400 font-bold mb-1">
-              <span className="font-mono text-[10px] uppercase tracking-wider">Deliverable C</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">Investigator Workspace</span>
               <ShieldCheck className="w-4 h-4 transition-transform group-hover:scale-110" />
             </div>
-            <h4 className="font-black text-sm text-slate-900 dark:text-slate-100">Law Enforcement UI</h4>
+            <h4 className="font-heading font-black text-sm text-slate-900 dark:text-slate-100">Law Enforcement UI</h4>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
               Secure investigator interface: Sec 91 &amp; 102 CrPC legal documentation.
             </p>
@@ -224,17 +224,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        {/* Deliverable d */}
+        {/* Capability 4 */}
         <div
           onClick={() => onNavigateTab('alerts')}
           className="bg-white dark:bg-slate-900/90 rounded-xl p-4 border border-rose-200 dark:border-rose-900/40 shadow-2xs hover:border-rose-500 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center justify-between text-xs text-rose-600 dark:text-rose-400 font-bold mb-1">
-              <span className="font-mono text-[10px] uppercase tracking-wider">Deliverable D</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">Threat Broadcast System</span>
               <Bell className="w-4 h-4 transition-transform group-hover:scale-110" />
             </div>
-            <h4 className="font-black text-sm text-slate-900 dark:text-slate-100">Alert Dispatch</h4>
+            <h4 className="font-heading font-black text-sm text-slate-900 dark:text-slate-100">Alert Dispatch</h4>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
               Real-time dispatch to LEAs, Banks &amp; I4C officers via SMS, Email &amp; Webhook API.
             </p>
@@ -245,17 +245,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        {/* Blockchain Theme Pillar */}
+        {/* Capability 5 */}
         <div
           onClick={() => onNavigateTab('blockchain')}
           className="bg-white dark:bg-slate-900/90 rounded-xl p-4 border border-indigo-200 dark:border-indigo-900/40 shadow-2xs hover:border-indigo-500 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center justify-between text-xs text-indigo-600 dark:text-indigo-400 font-bold mb-1">
-              <span className="font-mono text-[10px] uppercase tracking-wider">Blockchain Pillar</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">Bharat-Chain Ledger</span>
               <Link2 className="w-4 h-4 transition-transform group-hover:scale-110" />
             </div>
-            <h4 className="font-black text-sm text-slate-900 dark:text-slate-100">Bharat-Chain</h4>
+            <h4 className="font-heading font-black text-sm text-slate-900 dark:text-slate-100">Bharat-Chain</h4>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
               Consortium proof-of-custody: SHA-256 evidence integrity &amp; Sec 102 fund freezes.
             </p>
@@ -605,15 +605,15 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         </div>
       </div>
 
-      {/* SIH Problem Statement Alignment Modal */}
+      {/* System Guide & Architecture Modal */}
       {isSihModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-3xl w-full border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             <div className="p-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-blue-400" />
-                <h3 className="font-extrabold text-sm text-white">
-                  SIH 2026 Problem Statement &amp; Architecture Alignment
+                <h3 className="font-heading font-extrabold text-sm text-white">
+                  National Cybercrime Mitigation Architecture &amp; System Overview
                 </h3>
               </div>
               <button
@@ -627,13 +627,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             <div className="p-5 space-y-4 max-h-[75vh] overflow-y-auto text-xs">
               <div className="p-3.5 bg-blue-50 dark:bg-blue-950/40 rounded-xl border border-blue-200 dark:border-blue-900 space-y-1">
                 <span className="font-mono text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">
-                  Official Problem Statement Title
+                  System Mission &amp; Purpose
                 </span>
-                <h4 className="font-black text-sm text-slate-900 dark:text-slate-100 leading-snug">
-                  Development of a Predictive Analytics Framework for Cybercrime Complaints to Forecast Likely Cash Withdrawal Locations in Advance, Enabling Generation of Actionable Intelligence for Timely and Proactive Cybercrime Intervention.
+                <h4 className="font-heading font-black text-sm text-slate-900 dark:text-slate-100 leading-snug">
+                  Predictive Analytics Framework for Cybercrime Complaints to Forecast Likely Cash Withdrawal Locations in Advance, Enabling Proactive Cybercrime Intervention.
                 </h4>
                 <div className="flex items-center gap-2 text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-1">
-                  <span>Theme: <strong>Blockchain &amp; Cybersecurity</strong></span>
+                  <span>Framework: <strong>Blockchain &amp; Cybersecurity</strong></span>
                   <span>•</span>
                   <span>Authority: <strong>I4C / MHA / NCRP</strong></span>
                 </div>
@@ -641,13 +641,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
               <div className="space-y-3">
                 <h5 className="font-bold text-slate-900 dark:text-slate-100 text-sm">
-                  100% Deliverable Compliance Matrix:
+                  Core Architectural Modules:
                 </h5>
 
                 <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-1">
                   <div className="flex items-center gap-2 font-bold text-blue-600 dark:text-blue-400">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>a. Predictive Analytics Engine</span>
+                    <span>1. Predictive Analytics Engine</span>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 pl-6 leading-relaxed">
                     AI/ML-based system to analyze historical cybercrime &amp; financial data (~8,000 complaints daily) to predict potential withdrawal hotspots. Includes velocity decay, layering hops, geospatial distance modeling, and real-time alerts.
@@ -657,7 +657,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-1">
                   <div className="flex items-center gap-2 font-bold text-emerald-600 dark:text-emerald-400">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>b. Risk Heatmap Dashboard</span>
+                    <span>2. Tactical Risk Heatmap Dashboard</span>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 pl-6 leading-relaxed">
                     GIS-enabled tactical map visualizing real-time and potential risk zones with drill-down filters by time window, jurisdiction, and crime category (UPI, Phishing, Investment fraud).
@@ -667,7 +667,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-1">
                   <div className="flex items-center gap-2 font-bold text-purple-600 dark:text-purple-400">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>c. Law Enforcement Interface</span>
+                    <span>3. Law Enforcement Interface</span>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 pl-6 leading-relaxed">
                     Secure interface for police investigators to access alerts, intelligence briefs, Section 91 CrPC CCTV summons, and Section 102 CrPC bank account freezing orders.
@@ -677,7 +677,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-1">
                   <div className="flex items-center gap-2 font-bold text-rose-600 dark:text-rose-400">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>d. Alert &amp; Notification System</span>
+                    <span>4. Alert &amp; Threat Notification System</span>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 pl-6 leading-relaxed">
                     Real-time notifications to law enforcement (Patrol SMS), Banks (CFCFRMS REST API webhook), and I4C officers (Gov Flash Mail) with live dispatch execution simulator.
@@ -687,7 +687,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-1">
                   <div className="flex items-center gap-2 font-bold text-indigo-600 dark:text-indigo-400">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>Blockchain Theme: Bharat-Chain Immutable Forensics Ledger</span>
+                    <span>5. Bharat-Chain Immutable Forensics Ledger</span>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 pl-6 leading-relaxed">
                     Tamper-proof cryptographic chain of custody using SHA-256 Merkle proofs and Proof-of-Authority consensus (I4C, RBI, CID) ensuring Section 65B legal admissibility in court.
@@ -701,7 +701,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 onClick={() => setIsSihModalOpen(false)}
                 className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-xs"
               >
-                Close &amp; Continue
+                Close Guide
               </button>
             </div>
           </div>

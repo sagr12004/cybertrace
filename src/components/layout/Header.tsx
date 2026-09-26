@@ -9,6 +9,8 @@ import {
   Sun,
   Moon,
   Radio,
+  LogOut,
+  User as UserIcon,
 } from 'lucide-react';
 import { Alert, Complaint, User } from '../../types';
 import { useTheme } from '../../context/ThemeContext';
@@ -21,7 +23,8 @@ interface HeaderProps {
   onOpenNewComplaintModal: () => void;
   onOpenAi: () => void;
   onOpenAlerts: () => void;
-  currentUser: User;
+  currentUser: User | null;
+  onLogout: () => void;
   alerts: Alert[];
 }
 
@@ -34,6 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAi,
   onOpenAlerts,
   currentUser,
+  onLogout,
   alerts,
 }) => {
   const { theme, toggleTheme } = useTheme();
@@ -87,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           onClick={onLoadDemoScenario}
           className="group relative flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-lg text-xs font-semibold shadow-xs hover:shadow-md hover:shadow-orange-500/20 transition-all active:scale-98"
-          title="Load Primary SIH Demo Scenario (₹50,000 UPI Fraud & ATM Prediction)"
+          title="Load Primary Investigation Scenario (₹50,000 UPI Fraud & ATM Prediction)"
         >
           <Zap className="w-3.5 h-3.5 fill-current transition-transform group-hover:scale-110" />
           <span>Load Demo</span>
@@ -108,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200/80 dark:border-indigo-800/80 rounded-lg text-xs font-semibold transition-all relative active:scale-98"
         >
           <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-          <span>AI Copilot</span>
+          <span>Copilot</span>
           <span className="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400 absolute -top-0.5 -right-0.5 animate-ping" />
         </button>
 
@@ -126,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </button>
 
-        {/* Inspira UI-inspired Dark/Light Theme Toggle */}
+        {/* Dark/Light Theme Toggle */}
         <button
           onClick={toggleTheme}
           aria-label="Toggle theme mode"
@@ -144,21 +148,44 @@ export const Header: React.FC<HeaderProps> = ({
 
         <div className="h-6 w-px bg-slate-200 dark:bg-slate-800 mx-1" />
 
-        {/* User Profile */}
-        <div className="flex items-center gap-2 pl-1">
-          <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 flex items-center justify-center font-bold text-xs font-mono">
-            RV
-          </div>
-          <div className="text-left hidden lg:block">
-            <div className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
-              <span>{currentUser.name}</span>
-              <Shield className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+        {/* User Profile & Sign Out Switcher */}
+        {currentUser ? (
+          <div className="flex items-center gap-2 pl-1">
+            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 flex items-center justify-center font-bold text-xs font-mono">
+              {currentUser.name
+                .split(' ')
+                .map((n) => n[0])
+                .slice(0, 2)
+                .join('')}
             </div>
-            <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">{currentUser.badgeNumber}</div>
+            <div className="text-left hidden lg:block">
+              <div className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
+                <span>{currentUser.name}</span>
+                <Shield className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
+                {currentUser.badgeNumber}
+              </div>
+            </div>
+
+            <button
+              onClick={onLogout}
+              className="p-1.5 ml-1 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+              title="Switch Officer / Log Out to Login Page"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
-        </div>
+        ) : (
+          <button
+            onClick={onLogout}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-xs"
+          >
+            <UserIcon className="w-3.5 h-3.5" />
+            <span>Sign In</span>
+          </button>
+        )}
       </div>
     </header>
   );
 };
-

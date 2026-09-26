@@ -11,6 +11,7 @@ import {
   Moon,
   Monitor,
   Sparkles,
+  ArrowLeft,
 } from 'lucide-react';
 import { User as UserType } from '../types';
 import { useTheme } from '../context/ThemeContext';
@@ -47,14 +48,23 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
   return (
     <div className="p-6 space-y-6 max-w-5xl mx-auto">
       {/* Header */}
-      <div>
-        <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
-          <Settings className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-          <span>System Settings &amp; SIH Demo Controls</span>
-        </h2>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-          Configure appearance, risk thresholds, time windows, and manage local synthetic forensic datasets
-        </p>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => window.history.back?.()}
+          className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+          title="Back"
+        >
+          <ArrowLeft className="w-4 h-4" />
+        </button>
+        <div>
+          <h2 className="text-xl font-heading font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+            <Settings className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <span>System Settings &amp; Investigative Controls</span>
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            Configure appearance, risk thresholds, time windows, and manage local forensic datasets
+          </p>
+        </div>
       </div>
 
       {resetSuccess && (

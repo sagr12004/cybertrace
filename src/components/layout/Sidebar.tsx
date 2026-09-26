@@ -80,12 +80,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <h1 className="font-extrabold text-white tracking-tight text-sm">CyberTrace AI</h1>
-              <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                SIH'26
+              <h1 className="font-heading font-extrabold text-white tracking-tight text-base">CyberTrace</h1>
+              <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                PROACTIVE
               </span>
             </div>
-            <p className="text-[10px] font-mono text-slate-400 tracking-tight">Bengaluru Cyber Command</p>
+            <p className="text-[10px] font-mono text-slate-400 tracking-tight">National Cyber Forensics</p>
           </div>
         </div>
       </div>

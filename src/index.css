@@ -32,6 +32,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .font-heading {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
   /* Custom refined scrollbar (Lenis / Animate UI aesthetic) */
   ::-webkit-scrollbar {
     width: 6px;

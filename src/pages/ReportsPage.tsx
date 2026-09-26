@@ -12,6 +12,7 @@ import {
   Clock,
   MapPin,
   Lock,
+  ArrowLeft,
 } from 'lucide-react';
 import { Complaint, Investigation, Transaction, WithdrawalPrediction, AuditLog } from '../types';
 
@@ -63,14 +64,23 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({
     <div className="p-6 space-y-6 max-w-5xl mx-auto">
       {/* Top Action Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:hidden">
-        <div>
-          <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
-            <FileSpreadsheet className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-            <span>Official Cybercrime Forensic &amp; Tracing Report</span>
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Standard Operating Procedure (SOP) Compliant Investigation Dossier
-          </p>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => window.history.back?.()}
+            className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+            title="Back"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          <div>
+            <h2 className="text-xl font-heading font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+              <FileSpreadsheet className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <span>Official Cybercrime Forensic &amp; Tracing Report</span>
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              Standard Operating Procedure (SOP) Compliant Investigation Dossier
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-2.5">
@@ -316,9 +326,9 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({
           </div>
 
           <div className="text-right">
-            <div className="text-[10px] text-slate-400 uppercase font-semibold">Prototype Verification Disclaimer</div>
+            <div className="text-[10px] text-slate-400 uppercase font-semibold">Statutory Compliance Notice</div>
             <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 max-w-xs leading-tight">
-              Demonstration prototype built for Smart India Hackathon (SIH 2026). Predictions are synthetic decision-support indicators.
+              Standard Operating Procedure (SOP) compliant intelligence dossier for LEA field interception &amp; bank fund blocking.
             </div>
           </div>
         </div>
