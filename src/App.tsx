@@ -14,6 +14,7 @@ import { GisMapPage } from './pages/GisMapPage';
 import { AlertsPage } from './pages/AlertsPage';
 import { InvestigationsPage } from './pages/InvestigationsPage';
 import { ReportsPage } from './pages/ReportsPage';
+import { BlockchainLedgerPage } from './pages/BlockchainLedgerPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { LoginPage } from './pages/LoginPage';
 
@@ -419,6 +420,16 @@ export default function App() {
               transactions={transactions.filter((t) => t.complaintId === activeComplaint.id)}
               prediction={currentPrediction}
               auditLogs={activeAuditLogs}
+            />
+          )}
+
+          {currentTab === 'blockchain' && (
+            <BlockchainLedgerPage
+              complaints={complaints}
+              predictions={predictions}
+              activeComplaint={activeComplaint}
+              onSelectComplaint={(c) => setActiveComplaint(c)}
+              onNavigateTab={setCurrentTab}
             />
           )}
 

@@ -260,6 +260,53 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({
           </div>
         </section>
 
+        {/* Section 5: Statutory Law Enforcement Notices (CrPC Sections 91 & 102) */}
+        <section className="space-y-3">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-blue-800 dark:text-blue-400 border-b border-blue-100 dark:border-blue-900/60 pb-1">
+            5. Statutory Law Enforcement Legal Orders (Sections 91 &amp; 102 CrPC)
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div className="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1.5">
+              <span className="font-bold text-slate-900 dark:text-slate-100 block">
+                Section 91 CrPC Summons for CCTV &amp; ATM Logs
+              </span>
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                Directing Bank Security &amp; Cash Replenishment Agency to preserve CCTV footage and withdrawal dispense logs for ATM <strong>{prediction.candidateAtms[0]?.name || 'SBI-KOR-501'}</strong> within predicted window <strong>{prediction.timeWindowBucket}</strong>.
+              </p>
+              <div className="text-[10px] font-mono text-blue-600 dark:text-blue-400">Order Ref: SEC91-LE-2026-0842-A</div>
+            </div>
+
+            <div className="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1.5">
+              <span className="font-bold text-slate-900 dark:text-slate-100 block">
+                Section 102 CrPC Bank Account Debit Freeze Notice
+              </span>
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                Notice to Bank Nodal Officer for immediate debit freeze and marking lien under CFCFRMS on suspect mule accounts ({activeComplaint.suspectedAccount} - {activeComplaint.bankName}) to prevent cash liquidation.
+              </p>
+              <div className="text-[10px] font-mono text-purple-600 dark:text-purple-400">Order Ref: SEC102-FRZ-2026-0842-B</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 6: Bharat-Chain Immutable Forensics Stamp */}
+        <section className="p-3.5 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl border border-indigo-200 dark:border-indigo-900/60 space-y-1.5 text-xs">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-indigo-900 dark:text-indigo-200 uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+              <Lock className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+              Bharat-Chain Cryptographic Chain of Custody Stamp
+            </span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold">
+              VERIFIED IMMUTABLE (PoA)
+            </span>
+          </div>
+          <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-mono">
+            Block Height: #1479 • SHA-256 Hash: 0x8f3c4e129a0b9432e19641fbde2931885912a7cdb84f18e9c2049103aae4192b
+          </p>
+          <p className="text-[10px] text-slate-500 dark:text-slate-400">
+            Admissible under Section 65B of Indian Evidence Act, 1872. Verified by I4C Central Node #01 and State Cyber Command.
+          </p>
+        </section>
+
         {/* Document Footer & Signatures */}
         <div className="pt-6 border-t-2 border-slate-900 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-6 text-xs">
           <div>

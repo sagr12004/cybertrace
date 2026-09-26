@@ -14,6 +14,7 @@ import {
   Sparkles,
   AlertTriangle,
   Compass,
+  Link2,
 } from 'lucide-react';
 import { Alert } from '../../types';
 
@@ -28,6 +29,7 @@ export type NavTab =
   | 'alerts'
   | 'investigations'
   | 'reports'
+  | 'blockchain'
   | 'settings';
 
 interface SidebarProps {
@@ -63,6 +65,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     { id: 'investigations', label: 'Investigation Casefile', icon: <ShieldCheck className="w-4 h-4" /> },
     { id: 'reports', label: 'Police Dossier & Report', icon: <FileSpreadsheet className="w-4 h-4" /> },
+    { id: 'blockchain', label: 'Blockchain Forensics', icon: <Link2 className="w-4 h-4" /> },
     { id: 'settings', label: 'Controls & System Config', icon: <Settings className="w-4 h-4" /> },
   ];
 

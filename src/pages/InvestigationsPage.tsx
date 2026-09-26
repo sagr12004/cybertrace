@@ -70,21 +70,28 @@ export const InvestigationsPage: React.FC<InvestigationsPageProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>Investigator Case Workspace &amp; Decision Review</span>
+              <span>Law Enforcement Interface &amp; Dossier (SIH Deliverable C)</span>
             </h2>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
               {activeComplaint.complaintNumber}
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Formal human-in-the-loop review, field interception authorization, and forensic audit trail
+            Secure interface for investigators: Section 91 &amp; 102 CrPC legal documentation, field interception authorization, and forensic audit trail
           </p>
         </div>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => onNavigateTab('blockchain')}
+            className="flex items-center gap-1.5 px-3 py-2 bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-800 rounded-xl text-xs font-bold transition-all active:scale-98"
+          >
+            <Lock className="w-3.5 h-3.5" />
+            <span>Bharat-Chain Proofs</span>
+          </button>
           <button
             onClick={() => onNavigateTab('reports')}
             className="flex items-center gap-1.5 px-3 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white rounded-xl text-xs font-bold shadow-xs transition-all active:scale-98"

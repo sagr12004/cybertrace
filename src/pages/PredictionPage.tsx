@@ -79,17 +79,20 @@ export const PredictionPage: React.FC<PredictionPageProps> = ({
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
               <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>AI Withdrawal Prediction Engine</span>
+              <span>Predictive Analytics Engine (SIH Deliverable A)</span>
             </h2>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
               {activeComplaint.complaintNumber}
             </span>
+            <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              Pattern Detection &amp; Geospatial Risk Modeling
+            </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Geospatial &amp; temporal ATM cashout estimation based on money-trail layering velocity
+            Geospatial &amp; temporal ATM cashout estimation analyzing historical cybercrime (~8k complaints daily) &amp; layering velocity
           </p>
         </div>
 
