@@ -1,0 +1,95 @@
+{
+  "model_name": "CyberTrace-SpatialEnsemble-Ranker",
+  "version": "1.4.0-sih",
+  "algorithm": "GradientBoosting + Sigmoid Calibration",
+  "trained_date": "2026-09-26 21:01:24",
+  "training_samples": 1456,
+  "feature_count": 15,
+  "features": [
+    "dist_to_incident_km",
+    "dist_to_mule_branch_km",
+    "corridor_alignment_score",
+    "atm_fraud_hist_count",
+    "atm_cashout_density_cluster",
+    "cctv_vulnerability_score",
+    "cash_reserve_ratio",
+    "is_24_7",
+    "log_fraud_amount",
+    "hop_count",
+    "velocity_rapid",
+    "hour_sin",
+    "hour_cos",
+    "is_night_window",
+    "mule_account_prior_atm_hits"
+  ],
+  "top_features": [
+    {
+      "feature": "cctv_vulnerability_score",
+      "importance_pct": 22.14
+    },
+    {
+      "feature": "atm_fraud_hist_count",
+      "importance_pct": 20.09
+    },
+    {
+      "feature": "atm_cashout_density_cluster",
+      "importance_pct": 16.39
+    },
+    {
+      "feature": "dist_to_incident_km",
+      "importance_pct": 16.15
+    },
+    {
+      "feature": "dist_to_mule_branch_km",
+      "importance_pct": 13.58
+    },
+    {
+      "feature": "hour_cos",
+      "importance_pct": 4.26
+    },
+    {
+      "feature": "hour_sin",
+      "importance_pct": 2.5
+    },
+    {
+      "feature": "cash_reserve_ratio",
+      "importance_pct": 2.31
+    },
+    {
+      "feature": "log_fraud_amount",
+      "importance_pct": 1.44
+    },
+    {
+      "feature": "hop_count",
+      "importance_pct": 1.04
+    },
+    {
+      "feature": "is_night_window",
+      "importance_pct": 0.11
+    },
+    {
+      "feature": "corridor_alignment_score",
+      "importance_pct": 0.0
+    },
+    {
+      "feature": "is_24_7",
+      "importance_pct": 0.0
+    },
+    {
+      "feature": "velocity_rapid",
+      "importance_pct": 0.0
+    },
+    {
+      "feature": "mule_account_prior_atm_hits",
+      "importance_pct": 0.0
+    }
+  ],
+  "validation_brier_score": 0.0387,
+  "lead_time_horizons": [
+    "<= 30 mins",
+    "30-60 mins",
+    "60-180 mins",
+    "> 180 mins"
+  ],
+  "status": "Production-Ready"
+}

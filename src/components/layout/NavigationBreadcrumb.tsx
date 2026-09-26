@@ -113,6 +113,22 @@ const MODULE_INFO: Record<NavTab, ModuleInfo> = {
     whoUses: 'System Administrators and Command Staff.',
     keyActions: ['Reset demo investigation scenario', 'Check system and API health status', 'Configure risk threshold sensitivities'],
   },
+  bank_desk: {
+    title: 'Bank Nodal Desk (CFCFRMS / S.102 CrPC)',
+    category: 'Banking Vigilance & Immediate Recovery',
+    description: 'Direct console for Bank Nodal Officers and Financial Intelligence Units to process real-time debit freezes, mark account liens, and disarm predicted cashout ATMs.',
+    purpose: 'Enables rapid execution of Section 102 CrPC freezes within the critical golden hour before funds are withdrawn in cash.',
+    whoUses: 'Bank Nodal Officers, CFCFRMS Desks, and AML Compliance Leads.',
+    keyActions: ['Review real-time Section 102 CrPC lien queue', 'Execute immediate debit freeze orders', 'Disarm high-risk ATM cash dispensers', 'Export official compliance certificates'],
+  },
+  i4c_desk: {
+    title: 'National I4C Inter-State Operations Desk',
+    category: 'Cross-Jurisdictional Syndicate Coordination',
+    description: 'Indian Cybercrime Coordination Centre (I4C) console tracking inter-state fund velocity and coordinating multi-state police interventions.',
+    purpose: 'Bridges jurisdictional boundaries by correlating cross-state money trails from victim origin states to transit smurfing hubs and exit states.',
+    whoUses: 'I4C National Coordinators, State Cyber Cell Chiefs, and Inter-State Investigation Teams.',
+    keyActions: ['Track state-to-state fund corridors', 'Monitor national syndicate threat indices', 'Dispatch multi-jurisdictional Section 91 CrPC notices', 'Broadcast urgent inter-state police alerts'],
+  },
 };
 
 export const NavigationBreadcrumb: React.FC<NavigationBreadcrumbProps> = ({

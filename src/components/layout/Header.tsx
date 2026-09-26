@@ -14,6 +14,8 @@ import {
 import { Alert, Complaint, User } from '../../types';
 import { useTheme } from '../../context/ThemeContext';
 
+export type StakeholderPersona = 'lea' | 'bank' | 'i4c';
+
 interface HeaderProps {
   complaints: Complaint[];
   activeComplaint: Complaint;
@@ -25,6 +27,8 @@ interface HeaderProps {
   currentUser: User | null;
   onLogout: () => void;
   alerts: Alert[];
+  activePersona?: StakeholderPersona;
+  onSelectPersona?: (persona: StakeholderPersona) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -38,6 +42,8 @@ export const Header: React.FC<HeaderProps> = ({
   currentUser,
   onLogout,
   alerts,
+  activePersona = 'lea',
+  onSelectPersona,
 }) => {
   const { theme, toggleTheme } = useTheme();
   const pendingAlerts = alerts.filter((a) => a.status === 'New');
@@ -81,6 +87,25 @@ export const Header: React.FC<HeaderProps> = ({
         >
           {activeComplaint.status}
         </span>
+
+        {/* Stakeholder Role Switcher */}
+        <div className="hidden xl:flex items-center gap-1.5 ml-1 pl-3 border-l border-slate-200 dark:border-slate-800">
+          <span className="text-[10px] font-mono uppercase text-slate-400 dark:text-slate-500 font-semibold">
+            VIEWPORT:
+          </span>
+          <div className="relative">
+            <select
+              value={activePersona}
+              onChange={(e) => onSelectPersona?.(e.target.value as StakeholderPersona)}
+              className="appearance-none bg-blue-50/60 dark:bg-blue-950/40 hover:bg-blue-100/50 dark:hover:bg-blue-900/50 text-blue-800 dark:text-blue-300 font-medium text-xs py-1 pl-2.5 pr-7 rounded border border-blue-200 dark:border-blue-800/80 focus:outline-none cursor-pointer"
+            >
+              <option value="lea">Senior Cybercrime Investigator (LEA)</option>
+              <option value="bank">Bank Nodal Officer (CFCFRMS Desk)</option>
+              <option value="i4c">National I4C Coordinator (Inter-State)</option>
+            </select>
+            <ChevronDown className="w-3 h-3 text-blue-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
+        </div>
       </div>
 
       {/* Right: Actions and User */}

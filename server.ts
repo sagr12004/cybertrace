@@ -3,6 +3,7 @@ import { createServer as createViteServer } from 'vite';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execFile } from 'child_process';
 import { GoogleGenAI } from '@google/genai';
 import {
   ATM_LOCATIONS,
@@ -19,6 +20,7 @@ import {
 import { executeWithdrawalPrediction } from './src/utils/predictionEngine';
 import { computeAccountNetwork } from './src/utils/graphAnalytics';
 import { Alert, AuditLog, Complaint, Investigation, WithdrawalPrediction } from './src/types';
+import { generateScenarioEvents, SCENARIO_METADATA, ScenarioType } from './simulator/generator';
 
 dotenv.config();
 
@@ -196,6 +198,109 @@ app.get('/api/complaints/:id/withdrawals', (req: Request, res: Response) => {
 app.get('/api/complaints/:id/predictions', (req: Request, res: Response) => {
   const preds = dbPredictions.filter((p) => p.complaintId === req.params.id);
   res.json(preds);
+});
+
+// Production ML Candidate Ranking Bridge (Milestone 1)
+app.post('/api/v1/predict/rank', async (req: Request, res: Response) => {
+  try {
+    const { complaintId, complaint: customComplaint, candidateAtms, customTimeWindow } = req.body || {};
+    let complaint = customComplaint;
+    if (!complaint && complaintId) {
+      complaint = dbComplaints.find((c) => c.id === complaintId || c.complaintNumber === complaintId);
+    }
+    if (!complaint && dbComplaints.length > 0) {
+      complaint = dbComplaints[0];
+    }
+    if (!complaint) {
+      return res.status(404).json({ error: 'Complaint not found' });
+    }
+
+    const payload = {
+      complaint,
+      candidateAtms: candidateAtms || dbAtms,
+      transactions: dbTransactions.filter((t: any) => t.complaintId === complaint.id),
+      historicalWithdrawals: dbWithdrawals,
+      customTimeWindow,
+    };
+
+    const pythonScript = path.join(__dirname, 'ml', 'predict.py');
+    execFile(
+      'python',
+      [pythonScript, '--payload', JSON.stringify(payload)],
+      { maxBuffer: 10 * 1024 * 1024, cwd: path.join(__dirname, 'ml') },
+      (error, stdout, stderr) => {
+        if (error || !stdout) {
+          console.warn('Python ML runner fallback triggered:', stderr || error);
+          const legacyPred = executeWithdrawalPrediction({
+            complaint,
+            transactions: dbTransactions,
+            accounts: dbAccounts,
+            historicalWithdrawals: dbWithdrawals,
+            atms: dbAtms,
+            customTimeWindow,
+          });
+          return res.json({
+            status: 'success',
+            mode: 'fallback_heuristic',
+            predictedZone: legacyPred.predictedZone,
+            overallRiskScore: legacyPred.riskScore,
+            overallRiskCategory: legacyPred.riskCategory,
+            candidateAtms: legacyPred.candidateAtms,
+            timeHorizonProbabilities: {
+              within_30m: 0.35,
+              within_60m: 0.45,
+              within_180m: 0.15,
+              beyond_180m: 0.05
+            },
+            modelMetadata: {
+              model: 'CyberTrace-SpatialEnsemble-Ranker',
+              version: '1.4.0-sih (Fallback)',
+              status: 'Active'
+            }
+          });
+        }
+        try {
+          const result = JSON.parse(stdout);
+          return res.json(result);
+        } catch (parseErr) {
+          return res.status(500).json({ error: 'Failed to parse ML output', details: String(parseErr) });
+        }
+      }
+    );
+  } catch (err: any) {
+    res.status(500).json({ error: 'Ranking inference failed', message: err.message });
+  }
+});
+
+// Controllable Synthetic Stream Simulator Endpoints (Milestone 3)
+app.get('/api/v1/simulator/scenarios', (req: Request, res: Response) => {
+  res.json({
+    status: 'success',
+    scenarios: SCENARIO_METADATA,
+  });
+});
+
+app.post('/api/v1/simulator/generate', (req: Request, res: Response) => {
+  try {
+    const { scenario = 'stable_hotspot', count, inject = true } = req.body || {};
+    const result = generateScenarioEvents(scenario as ScenarioType, { caseCount: count });
+    
+    if (inject) {
+      result.complaints.forEach((comp: any) => {
+        dbComplaints.unshift(comp as Complaint);
+      });
+      result.transactions.forEach((txn: any) => {
+        dbTransactions.unshift(txn);
+      });
+      result.withdrawals.forEach((wdl: any) => {
+        dbWithdrawals.unshift(wdl);
+      });
+    }
+
+    res.json(result);
+  } catch (err: any) {
+    res.status(500).json({ error: 'Simulation generation failed', message: err.message });
+  }
 });
 
 app.post('/api/complaints/:id/predict', (req: Request, res: Response) => {

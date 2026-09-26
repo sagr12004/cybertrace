@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Sidebar, NavTab } from './components/layout/Sidebar';
-import { Header } from './components/layout/Header';
+import { Header, StakeholderPersona } from './components/layout/Header';
 import { NavigationBreadcrumb } from './components/layout/NavigationBreadcrumb';
 import { AiCopilotDrawer } from './components/ai/AiCopilotDrawer';
 import { NewComplaintModal } from './components/complaints/NewComplaintModal';
@@ -18,6 +18,8 @@ import { ReportsPage } from './pages/ReportsPage';
 import { BlockchainLedgerPage } from './pages/BlockchainLedgerPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { LoginPage } from './pages/LoginPage';
+import { BankNodalDeskPage } from './pages/BankNodalDeskPage';
+import { I4cNationalDeskPage } from './pages/I4cNationalDeskPage';
 
 import {
   ATM_LOCATIONS,
@@ -51,8 +53,20 @@ export default function App() {
   // Authentication State
   const [currentUser, setCurrentUser] = useState<User | null>(CURRENT_INVESTIGATOR);
 
-  // Active Navigation
+  // Active Navigation & Stakeholder Viewport
   const [currentTab, setCurrentTab] = useState<NavTab>('overview');
+  const [activePersona, setActivePersona] = useState<StakeholderPersona>('lea');
+
+  const handleSelectPersona = (persona: StakeholderPersona) => {
+    setActivePersona(persona);
+    if (persona === 'bank') {
+      setCurrentTab('bank_desk');
+    } else if (persona === 'i4c') {
+      setCurrentTab('i4c_desk');
+    } else {
+      setCurrentTab('overview');
+    }
+  };
 
   // Core Data States
   const [complaints, setComplaints] = useState<Complaint[]>(INITIAL_COMPLAINTS);
@@ -322,6 +336,8 @@ export default function App() {
           currentUser={currentUser}
           onLogout={() => setCurrentUser(null)}
           alerts={alerts}
+          activePersona={activePersona}
+          onSelectPersona={handleSelectPersona}
         />
 
         {/* Universal Back Navigation & Module Explainer Bar */}
@@ -438,6 +454,24 @@ export default function App() {
               activeComplaint={activeComplaint}
               onSelectComplaint={(c) => setActiveComplaint(c)}
               onNavigateTab={setCurrentTab}
+            />
+          )}
+
+          {currentTab === 'bank_desk' && (
+            <BankNodalDeskPage
+              complaints={complaints}
+              activeComplaint={activeComplaint}
+              accounts={accounts}
+              transactions={transactions}
+              activePrediction={currentPrediction}
+            />
+          )}
+
+          {currentTab === 'i4c_desk' && (
+            <I4cNationalDeskPage
+              complaints={complaints}
+              activeComplaint={activeComplaint}
+              transactions={transactions}
             />
           )}
 

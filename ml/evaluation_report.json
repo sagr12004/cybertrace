@@ -1,0 +1,57 @@
+{
+  "evaluation_protocol": "Chronological Walk-Forward Leakage-Safe Split",
+  "dataset_split": {
+    "total_cases": 150,
+    "train_cases": 97,
+    "val_cases": 22,
+    "test_cases": 31
+  },
+  "evaluation_timestamp": "2026-09-26T21:12:01.276731",
+  "benchmarks": {
+    "Random Baseline": {
+      "Precision@1": 0.0,
+      "Precision@3": 0.129,
+      "Precision@5": 0.3871,
+      "Precision@10": 0.6774,
+      "Precision@15": 0.9355,
+      "MRR": 0.1785,
+      "MeanRank": 8.0
+    },
+    "Proximity Baseline": {
+      "Precision@1": 0.1613,
+      "Precision@3": 0.5161,
+      "Precision@5": 0.7419,
+      "Precision@10": 1.0,
+      "Precision@15": 1.0,
+      "MRR": 0.4312,
+      "MeanRank": 3.39
+    },
+    "Historical Hotspot Baseline": {
+      "Precision@1": 0.5806,
+      "Precision@3": 0.8387,
+      "Precision@5": 0.9677,
+      "Precision@10": 1.0,
+      "Precision@15": 1.0,
+      "MRR": 0.7172,
+      "MeanRank": 2.03
+    },
+    "CyberTrace ML Ranker": {
+      "Precision@1": 0.6774,
+      "Precision@3": 1.0,
+      "Precision@5": 1.0,
+      "Precision@10": 1.0,
+      "Precision@15": 1.0,
+      "MRR": 0.828,
+      "MeanRank": 1.39,
+      "BrierScore": 0.0307
+    }
+  },
+  "lead_time_distribution": {
+    "median_minutes": 81,
+    "p25_minutes": 45,
+    "p75_minutes": 105,
+    "min_minutes": 20,
+    "max_minutes": 147
+  },
+  "verdict": "ML Ranker statistically outperforms Random, Proximity, and Historical Hotspot baselines."
+}

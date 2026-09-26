@@ -14,6 +14,8 @@ import {
   Sparkles,
   Shield,
   Link2,
+  Building2,
+  Globe,
 } from 'lucide-react';
 import { Alert } from '../../types';
 
@@ -29,6 +31,8 @@ export type NavTab =
   | 'investigations'
   | 'reports'
   | 'blockchain'
+  | 'bank_desk'
+  | 'i4c_desk'
   | 'settings';
 
 interface SidebarProps {
@@ -48,7 +52,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     (a) => a.status === 'New' || a.status === 'Under Review'
   ).length;
 
-  const navItems: { id: NavTab; label: string; icon: React.ReactNode; badge?: number }[] = [
+  const coreNavItems: { id: NavTab; label: string; icon: React.ReactNode; badge?: number }[] = [
     { id: 'overview', label: 'Command Overview', icon: <LayoutDashboard className="w-4 h-4" /> },
     { id: 'complaints', label: 'NCRP Complaints', icon: <FileText className="w-4 h-4" /> },
     { id: 'transactions', label: 'Layering & Transactions', icon: <ArrowRightLeft className="w-4 h-4" /> },
@@ -66,6 +70,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'reports', label: 'Police Dossier & Report', icon: <FileSpreadsheet className="w-4 h-4" /> },
     { id: 'blockchain', label: 'Blockchain Forensics', icon: <Link2 className="w-4 h-4" /> },
     { id: 'settings', label: 'Controls & System Config', icon: <Settings className="w-4 h-4" /> },
+  ];
+
+  const stakeholderNavItems: { id: NavTab; label: string; icon: React.ReactNode; badge?: string }[] = [
+    { id: 'bank_desk', label: 'Bank Nodal Officer (CFCFRMS)', icon: <Building2 className="w-4 h-4" />, badge: 'S.102' },
+    { id: 'i4c_desk', label: 'National I4C Coordinator', icon: <Globe className="w-4 h-4" />, badge: 'Inter-State' },
   ];
 
   return (
@@ -89,40 +98,76 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-2.5 py-3 space-y-0.5 overflow-y-auto">
-        <div className="px-2.5 pb-1.5 text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">
-          Modules
+      <nav className="flex-1 px-2.5 py-3 space-y-3 overflow-y-auto">
+        {/* Stakeholder Viewports */}
+        <div className="space-y-0.5">
+          <div className="px-2.5 pb-1 text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 font-bold">
+            Stakeholder Desks
+          </div>
+          {stakeholderNavItems.map((item) => {
+            const isActive = currentTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onSelectTab(item.id)}
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  isActive
+                    ? 'bg-blue-50 text-blue-700 border-blue-200 font-semibold dark:bg-blue-600/15 dark:text-blue-400 dark:border-blue-500/30'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-slate-100 border border-transparent'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className={isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-500'}>
+                    {item.icon}
+                  </span>
+                  <span>{item.label}</span>
+                </div>
+                {item.badge && (
+                  <span className="text-[9px] font-mono font-medium px-1.5 py-0.2 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
-        {navItems.map((item) => {
-          const isActive = currentTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => onSelectTab(item.id)}
-              className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                isActive
-                  ? 'bg-blue-50 text-blue-700 border-blue-200 font-semibold dark:bg-blue-600/15 dark:text-blue-400 dark:border-blue-500/30'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200 border border-transparent'
-              }`}
-            >
-              <div className="flex items-center gap-2.5">
-                <span className={isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-500'}>
-                  {item.icon}
-                </span>
-                <span>{item.label}</span>
-              </div>
-              {item.badge !== undefined && (
-                <span
-                  className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded ${
-                    isActive ? 'bg-blue-600 text-white' : 'bg-rose-50 text-rose-600 border border-rose-200 dark:bg-rose-500/20 dark:text-rose-400 dark:border-rose-500/30'
-                  }`}
-                >
-                  {item.badge}
-                </span>
-              )}
-            </button>
-          );
-        })}
+
+        {/* Core Modules */}
+        <div className="space-y-0.5">
+          <div className="px-2.5 pb-1 text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">
+            LEA Forensics Modules
+          </div>
+          {coreNavItems.map((item) => {
+            const isActive = currentTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onSelectTab(item.id)}
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  isActive
+                    ? 'bg-blue-50 text-blue-700 border-blue-200 font-semibold dark:bg-blue-600/15 dark:text-blue-400 dark:border-blue-500/30'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200 border border-transparent'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className={isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-500'}>
+                    {item.icon}
+                  </span>
+                  <span>{item.label}</span>
+                </div>
+                {item.badge !== undefined && (
+                  <span
+                    className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded ${
+                      isActive ? 'bg-blue-600 text-white' : 'bg-rose-50 text-rose-600 border border-rose-200 dark:bg-rose-500/20 dark:text-rose-400 dark:border-rose-500/30'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </nav>
 
       {/* AI Copilot Quick Callout */}
