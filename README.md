@@ -268,4 +268,4 @@ All complaints, account numbers, names, and transaction values presented in this
 
 ---
 
-**Developed for Smart India Hackathon (SIH)** • Built with pride for Indian Law Enforcement.
+
