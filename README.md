@@ -1,6 +1,6 @@
 # CyberTrace AI: Cybercrime Investigation & Financial Withdrawal Prediction Platform
 
-> **Smart India Hackathon (SIH) Prototype**  
+> 
 > AI-assisted cybercrime investigation, multi-hop financial fraud money-trail tracing, geospatial analysis, and explainable ATM withdrawal prediction platform.
 
 ---
@@ -23,7 +23,7 @@ Cybercrime investigations frequently involve complex account layering to evade d
 
 ---
 
-## 2. 5-Minute SIH Demo Workflow
+## 2.  Workflow
 
 Investigators or judges can test the end-to-end workflow in under 5 minutes:
 
