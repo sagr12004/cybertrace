@@ -1,0 +1,6 @@
+{
+  "name": "CyberTrace AI - Cybercrime Investigation & Withdrawal Prediction",
+  "description": "AI-assisted cybercrime investigation, financial fraud money-trail analysis, geospatial ATM withdrawal prediction, and alert dispatch platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
